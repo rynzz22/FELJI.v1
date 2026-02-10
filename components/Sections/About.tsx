@@ -3,41 +3,66 @@ import { Section } from '../Layout/Section';
 
 export const About: React.FC = () => {
   return (
-    <Section id="about" className="bg-white">
+    <Section id="about" className="relative">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
         
-        <div>
-           <div className="w-12 h-1 bg-brand-green rounded-full mb-8"></div>
-           <h2 className="text-4xl font-bold text-brand-navy mb-8 leading-tight">
-             Engineered by the next generation of innovators.
+        <div className="relative z-10">
+           <div className="w-12 h-1 bg-brand-green rounded-full mb-8 animate-pulse-slow"></div>
+           <h2 className="text-4xl lg:text-5xl font-bold text-brand-navy mb-8 leading-tight">
+             Engineered by the next generation of <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-navy to-brand-green">innovators.</span>
            </h2>
-           <p className="text-zinc-500 mb-6 text-lg leading-relaxed">
-             FELJI Tech is an early-stage startup founded by two 19-year-old innovators. We move beyond theoretical concepts to address real-world problems. 
-           </p>
-           <p className="text-zinc-500 text-lg leading-relaxed">
-             Our focus lies strictly on safety, efficiency, and accessibility, ensuring that our digital solutions translate into tangible community benefits.
-           </p>
+           <div className="space-y-6 text-zinc-500 text-lg leading-relaxed">
+             
+             {/* Main Description - Floating White Card */}
+             <div className="bg-white p-8 rounded-[2rem] shadow-2xl shadow-zinc-200/50 border border-white/50 relative group hover:-translate-y-1 transition-transform duration-500">
+                <div className="absolute top-0 left-8 right-8 h-[1px] bg-gradient-to-r from-transparent via-brand-green/30 to-transparent"></div>
+                <p className="relative z-10">
+                   FELJI Tech is an early-stage startup founded by two 19-year-old innovators. We move beyond theoretical concepts to address real-world problems.
+                </p>
+                <div className="absolute bottom-0 right-0 p-6 opacity-0 group-hover:opacity-10 transition-opacity">
+                    <svg className="w-12 h-12 text-brand-navy" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M14.017 21L14.017 18C14.017 16.8954 13.1216 16 12.017 16H9.01732V12H13.0173V7H5.01732V12C5.01732 16.4183 8.59903 20 13.0173 20H14.017V21ZM21.0173 21V18C21.0173 16.8954 20.1219 16 19.0173 16H16.0173V12H20.0173V7H12.0173V12C12.0173 16.4183 15.599 20 20.0173 20H21.0173V21Z" />
+                    </svg>
+                </div>
+             </div>
+
+             <p className="pl-4">
+               Our focus lies strictly on safety, efficiency, and accessibility, ensuring that our digital solutions translate into tangible community benefits.
+             </p>
+           </div>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-           {[
-             { name: "Felecito Caturza Jr.", role: "Co-Founder" },
-             { name: "Aj Rienze Josol", role: "Co-Founder" }
-           ].map((person, i) => (
-             <div key={i} className="bg-zinc-50 p-8 rounded-[2rem] border border-zinc-100 hover:border-brand-green/30 transition-all hover:shadow-lg text-center group">
-                <div className="w-20 h-20 bg-white rounded-full mx-auto mb-6 flex items-center justify-center shadow-sm text-2xl font-bold text-brand-navy group-hover:text-brand-green transition-colors border border-zinc-100">
-                  {person.name.charAt(0)}
+        <div className="relative">
+            {/* Background decorative element connecting cards */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-brand-green/10 to-transparent rounded-[3rem] -rotate-3 scale-105 blur-2xl z-0"></div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 relative z-10">
+            {[
+                { name: "Felecito Caturza Jr.", role: "Co-Founder", initial: "F" },
+                { name: "Aj Rienze Josol", role: "Co-Founder", initial: "A" }
+            ].map((person, i) => (
+                <div key={i} className="group relative bg-white/60 backdrop-blur-xl p-8 rounded-[2rem] border border-white shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 overflow-hidden">
+                    {/* Hover Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-green/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                    
+                    <div className="relative z-10 text-center">
+                        <div className="w-24 h-24 bg-gradient-to-br from-zinc-50 to-zinc-100 rounded-full mx-auto mb-6 flex items-center justify-center shadow-inner border border-zinc-100 group-hover:scale-110 transition-transform duration-500">
+                            <span className="text-3xl font-black text-brand-navy group-hover:text-brand-green transition-colors">{person.initial}</span>
+                        </div>
+                        <h4 className="text-xl font-bold text-brand-navy mb-1">{person.name}</h4>
+                        <span className="text-xs font-bold uppercase tracking-wider text-zinc-400 group-hover:text-brand-green transition-colors">{person.role}</span>
+                    </div>
                 </div>
-                <h4 className="text-lg font-bold text-brand-navy">{person.name}</h4>
-                <span className="inline-block mt-2 px-3 py-1 bg-white rounded-full text-xs font-semibold text-zinc-500 border border-zinc-100">{person.role}</span>
-             </div>
-           ))}
-           
-           <div className="col-span-1 sm:col-span-2 bg-brand-navy/5 p-8 rounded-[2rem] text-center">
-              <p className="text-brand-navy font-medium italic">
-                "Dedicated to providing reliable technology for Talibon and beyond."
-              </p>
-           </div>
+            ))}
+            
+            {/* Quote Card - Updated to floating white card style */}
+            <div className="col-span-1 sm:col-span-2 bg-white p-8 rounded-[2rem] text-center shadow-xl shadow-zinc-200/50 border border-white/60 transform transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-transparent to-zinc-50/50 pointer-events-none"></div>
+                <p className="relative z-10 text-brand-navy/80 font-medium italic text-lg">
+                    "Dedicated to providing reliable technology for Talibon and beyond."
+                </p>
+            </div>
+            </div>
         </div>
 
       </div>

@@ -1,14 +1,22 @@
 import React from 'react';
-import { ArrowRight, Activity } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Section } from '../Layout/Section';
 
 export const Hero: React.FC = () => {
   return (
-    <Section className="min-h-[85vh] flex items-center pt-32 pb-10">
+    <Section className="min-h-[90vh] flex items-center pt-32 pb-10 relative">
+      {/* Decorative Floating Orb - Positioned BEHIND text via z-[-1] */}
+      <div className="absolute top-1/2 right-0 translate-x-1/4 -translate-y-1/2 hidden lg:block pointer-events-none animate-float z-[-1]">
+          <div className="w-[30rem] h-[30rem] rounded-full border border-zinc-100/50 bg-gradient-to-tr from-white/40 to-white/10 backdrop-blur-[2px] flex items-center justify-center relative overflow-hidden opacity-60">
+              <div className="absolute inset-0 bg-gradient-to-tr from-brand-green/5 to-transparent"></div>
+              <div className="w-[20rem] h-[20rem] rounded-full border border-dashed border-brand-navy/10 animate-spin [animation-duration:30s]"></div>
+          </div>
+      </div>
+
       <div className="w-full max-w-5xl text-left relative z-10">
         
-        {/* Soft Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-zinc-50 border border-zinc-200 text-zinc-600 text-xs font-semibold mb-8 shadow-sm animate-fade-in-up hover:border-brand-green/50 transition-colors cursor-default">
+        {/* Soft Badge - Glass Style */}
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border border-zinc-200 text-zinc-600 text-xs font-semibold mb-8 shadow-sm animate-fade-in-up hover:border-brand-green/50 transition-colors cursor-default">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-green opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-green"></span>
@@ -30,27 +38,26 @@ export const Hero: React.FC = () => {
           We provide practical, reliable digital solutions to help citizens work safer and with greater ease.
         </p>
 
-        <div className="flex flex-col sm:flex-row items-center justify-start gap-4 animate-fade-in-up [animation-delay:300ms]">
+        <div className="flex flex-col sm:flex-row items-center justify-start gap-5 animate-fade-in-up [animation-delay:300ms]">
+          {/* Primary Button with Shimmer */}
           <a
             href="#projects"
-            className="group px-8 py-4 bg-brand-navy text-white rounded-full font-semibold shadow-xl shadow-brand-navy/15 hover:shadow-brand-navy/25 hover:-translate-y-1 transition-all flex items-center gap-2"
+            className="relative group px-8 py-4 bg-brand-navy text-white rounded-full font-semibold overflow-hidden shadow-xl shadow-brand-navy/15 hover:shadow-brand-navy/30 hover:-translate-y-1 transition-all flex items-center gap-2"
           >
-            View Projects
-            <ArrowRight className="w-4 h-4 text-brand-green transition-transform group-hover:translate-x-1" />
+            <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-shimmer" />
+            <span className="relative flex items-center gap-2">
+              View Projects
+              <ArrowRight className="w-4 h-4 text-brand-green transition-transform group-hover:translate-x-1" />
+            </span>
           </a>
+
+          {/* Secondary Button with Glass Effect */}
           <a
             href="#about"
-            className="px-8 py-4 bg-white text-zinc-600 border border-zinc-200 rounded-full font-semibold hover:bg-zinc-50 hover:border-zinc-300 transition-all hover:-translate-y-1"
+            className="px-8 py-4 glass text-zinc-600 rounded-full font-semibold hover:bg-white/90 hover:text-brand-navy border border-zinc-200/50 hover:border-zinc-300 transition-all hover:-translate-y-1 shadow-sm backdrop-blur-md"
           >
             About Us
           </a>
-        </div>
-
-        {/* Decorative Floating Elements - Moved to right side to balance left text */}
-        <div className="absolute top-1/2 right-0 translate-x-1/4 -translate-y-1/2 hidden lg:block opacity-40 pointer-events-none animate-pulse-slow">
-           <div className="w-[30rem] h-[30rem] rounded-full border border-zinc-100 flex items-center justify-center">
-              <div className="w-[22rem] h-[22rem] rounded-full border border-dashed border-zinc-200"></div>
-           </div>
         </div>
 
       </div>

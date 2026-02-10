@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import Lenis from 'lenis';
 import { Navbar } from './components/Layout/Navbar';
 import { Hero } from './components/Sections/Hero';
 import { Mission } from './components/Sections/Mission';
@@ -11,6 +12,23 @@ import { TechBackground } from './components/UI/TechBackground';
 function App() {
   
   useEffect(() => {
+    // Initialize Lenis for smooth momentum scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      touchMultiplier: 2,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
     // Simple intersection observer for scroll reveal effects
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -23,7 +41,10 @@ function App() {
     const elements = document.querySelectorAll('.reveal');
     elements.forEach(el => observer.observe(el));
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      lenis.destroy();
+    };
   }, []);
 
   return (
